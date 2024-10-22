@@ -1,0 +1,7 @@
+.env
+venv
+.venv/
+venv/
+.venv 
+
+sensor.egg-info
