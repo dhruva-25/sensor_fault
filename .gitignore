@@ -1,7 +1,6 @@
 .env
 venv
-.venv/
-venv/
-.venv 
-
 sensor.egg-info
+artifact
+logs
+prac.ipynb
