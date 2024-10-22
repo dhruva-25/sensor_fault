@@ -23,7 +23,6 @@ list_of_files = [
     f"{project_name}/constant/training_pipeline/__init__.py",
     f"{project_name}/constant/application.py",
     f"{project_name}/constant/database.py",
-    f"{project_name}/constant/env_variable.py",
     f"{project_name}/constant/s3_bucket.py",
     f"{project_name}/data_access/__init__.py",
     f"{project_name}/data_access/sensor_data.py",
