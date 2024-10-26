@@ -14,5 +14,8 @@ watchfiles
 websockets
 wincertstore
 xgboost
+mlflow
+pyaml
+dagshub
 
 -e .
