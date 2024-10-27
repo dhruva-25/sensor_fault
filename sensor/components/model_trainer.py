@@ -34,7 +34,7 @@ class ModelTrainer:
     def train_model(self, X_train, y_train):
         try:
             models = {
-                "Random Forest": RandomForestClassifier(verbose=1),
+                "Random Forest": RandomForestClassifier(),
                 #"Decision Tree": DecisionTreeClassifier(),
                 #"Gradient Boosting": GradientBoostingClassifier(verbose=1),
                 #"Logistic Regression": LogisticRegression(verbose=1),
@@ -49,10 +49,10 @@ class ModelTrainer:
                 # 'max_features':['sqrt','log2'],
             },
             "Random Forest":{
-                # 'criterion':['gini', 'entropy', 'log_loss'],
+                'criterion':['gini', 'entropy'],
                 
                 # 'max_features':['sqrt','log2',None],
-                'n_estimators': [8,16,32,128,256]
+                # 'n_estimators': [8,16,32,128,256]
             },
             "Gradient Boosting":{
                 # 'loss':['log_loss', 'exponential'],
@@ -67,10 +67,10 @@ class ModelTrainer:
                 'learning_rate':[.1,.01,.001],
                 #'n_estimators': [8,16,32,64,128,256]
             },
-            "XGBoost":{ "booster": ["gbtree", "dart"],
-                        "eta " : [0, 0.01, 0.5, 0.1 ,1],
+           "XGBoost":{ "booster": ["gbtree", "dart"],
+                         "eta " : [0, 0.01, 0.5, 0.1 ,1],
                         "max_depth ": [6, 4, 5], 
-                }
+               }
             
             }
             
@@ -86,7 +86,7 @@ class ModelTrainer:
             return model
         except Exception as e:
             raise SensorException(e,sys)
-
+        
         
     def initiate_model_trainer(self) -> ModelTrainerArtifact:
         
@@ -108,12 +108,15 @@ class ModelTrainer:
             model = self.train_model(x_train, y_train)
             y_train_pred = model.predict(x_train)
             classification_train_metric =  get_classification_score(y_true=y_train, y_pred=y_train_pred)
+        
  
             if classification_train_metric.f1_score<= self.model_trainer_config.expected_accuracy:
                 raise Exception("Trained model is not good to provide expected accuracy")
             
             y_test_pred = model.predict(x_test)
             classification_test_metric = get_classification_score(y_true=y_test, y_pred=y_test_pred)
+       
+
 
 
             #Overfitting and Underfitting
